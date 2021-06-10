@@ -7,6 +7,7 @@ import { log, logError } from "./helpers";
 import * as bf from "./buffer-helpers";
 
 const BROADCASTERS_LIMIT = process.env.BROADCASTERS_LIMIT ? Number.parseInt(process.env.BROADCASTERS_LIMIT) : 10;
+const ALLOW_MULTISTREAM = process.env.ALLOW_MULTISTREAM ? Number.parseInt(process.env.ALLOW_MULTISTREAM) : 0;
 
 export class JsMpegSocket extends WebSocket.Server {
     connectionCount: number;
@@ -44,14 +45,14 @@ export class JsMpegSocket extends WebSocket.Server {
     }
     // HTTP Server to accept incomming MPEG-TS Stream from ffmpeg
     processMpegTs(req: Request, res: Response) {
-        const address = req.socket.remoteAddress + (process.env.ALLOW_MULTISTREAM ? (":" + req.socket.remotePort) : "");
+        const address = req.ip;
 
         if (process.env.STREAM_KEY && req.headers.authorization != process.env.STREAM_KEY) {
             log(`Broadcaster connection failed! address=${address} [wrong secret "${req.headers.authorization}"]`);
             res.end();
             return;
         }
-        if (!process.env.ALLOW_MULTISTREAM && this.clientAddress.has(address)) {
+        if (!ALLOW_MULTISTREAM && this.clientAddress.has(address)) {
             log(`Broadcaster multiple streams not allowed! address=${address}`);
             res.end();
             return;
