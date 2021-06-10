@@ -48,7 +48,7 @@ export class JsMpegSocket extends WebSocket.Server {
     processMpegTs(req: Request, res: Response) {
         let ip = req.get("x-forwarded-for");
         ip = ip ? ip : req.ip;
-        const address = ALLOW_MULTISTREAM ? (ip + ":" + timestamp) : ip;
+        const address = ALLOW_MULTISTREAM ? (ip + ":" + timestamp()) : ip;
 
         if (process.env.STREAM_KEY && req.headers.authorization != process.env.STREAM_KEY) {
             log(`Broadcaster connection failed! address=${address} [wrong secret "${req.headers.authorization}"]`);
