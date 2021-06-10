@@ -4,6 +4,7 @@ import WebSocket from "ws";
 import { Request, Response } from "express";
 import { Server } from "http";
 import { log, logError } from "./helpers";
+import { timestamp } from "@raz1el/util";
 import * as bf from "./buffer-helpers";
 
 const BROADCASTERS_LIMIT = process.env.BROADCASTERS_LIMIT ? Number.parseInt(process.env.BROADCASTERS_LIMIT) : 10;
@@ -45,7 +46,9 @@ export class JsMpegSocket extends WebSocket.Server {
     }
     // HTTP Server to accept incomming MPEG-TS Stream from ffmpeg
     processMpegTs(req: Request, res: Response) {
-        const address = req.headers["x-forwarded-for"] ? req.headers["x-forwarded-for"] : req.ip;
+        let ip = req.get("x-forwarded-for");
+        ip = ip ? ip : req.ip;
+        const address = ALLOW_MULTISTREAM ? (ip + ":" + timestamp) : ip;
 
         if (process.env.STREAM_KEY && req.headers.authorization != process.env.STREAM_KEY) {
             log(`Broadcaster connection failed! address=${address} [wrong secret "${req.headers.authorization}"]`);
