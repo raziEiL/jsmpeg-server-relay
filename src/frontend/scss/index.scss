@@ -109,18 +109,23 @@ canvas {
 }
 
 // menu team
-.team-a,
-.team-b {
+.border-a,
+.border-b,
+.border-c {
     border-width: 4px;
     border-style: solid;
 }
 
-.team-a {
+.border-a {
     border-color: #E94957;
 }
 
-.team-b {
+.border-b {
     border-color: #5590B4;
+}
+
+.border-c {
+    border-color: orange;
 }
 
 // @shopify/draggable
@@ -155,12 +160,12 @@ canvas {
     font-size: 16px;
 }
 
-.a {
+.debug-a {
     width: 448px;
     height: 252px;
 }
 
-.b {
+.debug-b {
     width: 333px;
     height: 250px;
 }

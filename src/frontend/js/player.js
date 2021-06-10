@@ -32,7 +32,7 @@ function createSocket() {
         const cams = document.querySelectorAll(".cam");
 
         for (const cam of cams) {
-            if (!cam.classList.contains("demo"))
+            if (!cam.classList.contains("demo") && !cam.classList.contains("debug"))
                 cam.remove();
         }
 
@@ -51,7 +51,7 @@ function createSocket() {
                 if (!jsMpegs.has(obj.data)) {
                     const div = document.createElement("div");
                     div.dataset.index = obj.data;
-                    div.classList.add("cam", "team-a");
+                    div.classList.add("cam", "border-a");
                     vcMenu(div);
 
                     const span = document.createElement("span");

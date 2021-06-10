@@ -33,16 +33,12 @@ const b = document.querySelector(".button-b");
 let count = 0;
 
 a.addEventListener("click", () => {
-    create("a");
+    create("debug-a");
 });
 
 b.addEventListener("click", () => {
-    create("b");
+    create("debug-b");
 });
-
-/*  unused css ignore fix
-createElement("a"); createElement("b"); 
-*/
 
 function create(className) {
     if (count >= 10) {
@@ -52,7 +48,7 @@ function create(className) {
     count++;
 
     const div = document.createElement("div");
-    div.classList.add("cam", className, "team-a");
+    div.classList.add("cam", className, "border-a", "debug");
     div.innerHTML = "Удерживайте левую кнопку мыши, чтобы переместить окно<br><br>Нажмите правую кнопку мыши, чтобы открыть меню команд";
     div.style.backgroundColor = `rgb(${getRandomArbitrary(0, 255)},${getRandomArbitrary(0, 255)},${getRandomArbitrary(0, 255)})`;
     vcMenu(div);

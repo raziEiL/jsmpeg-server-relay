@@ -2,22 +2,19 @@
 const menu = document.querySelector(".menu");
 const opt0 = document.querySelector(".menu--opt-0");
 const opt1 = document.querySelector(".menu--opt-1");
+const opt2 = document.querySelector(".menu--opt-2");
+const borderClasses = ["border-a", "border-b", "border-c"];
+const opts = [opt0, opt1, opt2];
 
-opt0.addEventListener("click", () => {
-    console.log("click opt-0");
-    if (opt0.menuParent) {
-        opt0.menuParent.classList.add("border-a");
-        opt0.menuParent.classList.remove("border-b");
-    }
-});
-
-opt1.addEventListener("click", () => {
-    console.log("click opt-1");
-    if (opt1.menuParent) {
-        opt1.menuParent.classList.add("border-b");
-        opt1.menuParent.classList.remove("border-a");
-    }
-});
+for (const [i, e] of opts.entries()) {
+    e.addEventListener("click", () => {
+        console.log("click menu", i);
+        if (e.menuParent) {
+            e.menuParent.classList.remove(...borderClasses);
+            e.menuParent.classList.add(borderClasses[i]);
+        }
+    });
+}
 
 //exit the context menu
 window.addEventListener("click", () => {
@@ -48,7 +45,7 @@ module.exports = function addMenuListener(element) {
         else {
             menu.style.top = (e.clientY - menu.offsetHeight) + "px";
         }
-        opt0.menuParent = element;
-        opt1.menuParent = element;
+
+        for (const e of opts) e.menuParent = element;
     });
-}
+};
