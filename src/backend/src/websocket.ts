@@ -45,8 +45,8 @@ export class JsMpegSocket extends WebSocket.Server {
     }
     // HTTP Server to accept incomming MPEG-TS Stream from ffmpeg
     processMpegTs(req: Request, res: Response) {
-        const address = req.ip;
-        log(req.headers);
+        const address = req.headers["x-forwarded-for"] ? req.headers["x-forwarded-for"] : req.ip;
+
         if (process.env.STREAM_KEY && req.headers.authorization != process.env.STREAM_KEY) {
             log(`Broadcaster connection failed! address=${address} [wrong secret "${req.headers.authorization}"]`);
             res.end();
