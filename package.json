@@ -1,6 +1,6 @@
 {
     "name": "jsmpeg-server-relay",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Server accepts an MPEG-TS over HTTP in MPEG1 format and serves it via socket",
     "main": "dist/backend/index.js",
     "scripts": {
