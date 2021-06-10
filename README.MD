@@ -1,12 +1,12 @@
 # Руководство настройки JSMpeg Webcam Server 
 JSMpeg Webcam Server — позволяет объединить трансляции нескольких камер на одной странице веб-сайта.  
 
-* Сервер принимает данные по протоколу [MPEG-TS](https://ru.wikipedia.org/wiki/MPEG-TS) через HTTP в формате цифрового сжатия аудио и видео [MPEG1](https://en.wikipedia.org/wiki/MPEG-1)
+* Прием данных по протоколу [MPEG-TS](https://ru.wikipedia.org/wiki/MPEG-TS) через HTTP в формате цифрового сжатия аудио и видео [MPEG1](https://en.wikipedia.org/wiki/MPEG-1)
 * Поддержка множества трансляций на один порт сервера
 * Трансляции отображаются на веб-сайте с помощью [jsmpeg](https://github.com/cycjimmy/jsmpeg-player) плеера
 
 # Клиент
-Начать трансляцию на сервер можно с помощью приложения [JSMpeg Webcam](https://github.com/raziEiL/webcam-broadcaster).  
+Начать трансляцию на сервер можно с помощью приложения [JSMpeg Webcam Broadcaster](https://github.com/raziEiL/jsmpeg-webcam-broadcaster).  
 
 # Настройки
 [Переменные среды](https://en.wikipedia.org/wiki/Environment_variable) применяемые для настройки сервера.
