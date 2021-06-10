@@ -20,13 +20,13 @@
     "pkg": {
         "assets": "dist/frontend/**/*"
     },
-    "productName": "JSMpeg Webcam Server",
+    "productName": "JSMpeg Server Relay",
     "keywords": [
         "server",
         "stream",
         "webcamera",
         "jsmpeg",
-        "ts",
+        "ts-mpeg",
         "mpeg1",
         "ffmpeg"
     ],
@@ -94,7 +94,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/raziEiL/jsmpeg-webcam-server.git"
+        "url": "https://github.com/raziEiL/jsmpeg-server-relay.git"
     },
     "author": {
         "name": "Denis Medvedev (raziEiL)",
