@@ -23,7 +23,7 @@ setTimeout(() => {
     }
 }, 6000);
 
-// Debug Logic
+// Debug Logic (нужно раскомментировать debug purpose в html файле)
 const vcMenu = require("./incude/menu");
 const { getRandomArbitrary } = require("@raz1el/util");
 
@@ -32,13 +32,15 @@ const a = document.querySelector(".button-a");
 const b = document.querySelector(".button-b");
 let count = 0;
 
-a.addEventListener("click", () => {
-    create("debug-a");
-});
+if (a)
+    a.addEventListener("click", () => {
+        create("debug-a");
+    });
 
-b.addEventListener("click", () => {
-    create("debug-b");
-});
+if (b)
+    b.addEventListener("click", () => {
+        create("debug-b");
+    });
 
 function create(className) {
     if (count >= 10) {

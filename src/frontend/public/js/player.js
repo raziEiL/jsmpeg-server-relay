@@ -1,6 +1,6 @@
 const JSMpeg = require("./incude/jsmpeg-player.umd.min");
 const vcMenu = require("./incude/menu");
-const bf = require("../../../dist/backend/src/buffer-helpers");
+const bf = require("../../../../dist/backend/src/buffer-helpers");
 const jsMpegs = new Map();
 
 const isLocalehost = () => document.location.hostname.includes("localhost") && document.location.hostname.length === 9;

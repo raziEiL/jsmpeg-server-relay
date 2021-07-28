@@ -1,11 +1,11 @@
 {
     "name": "jsmpeg-server-relay",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Server accepts an MPEG-TS over HTTP in MPEG1 format and serves it via socket",
     "main": "dist/backend/index.js",
     "scripts": {
         "start": "node --unhandled-rejections=strict dist/backend/index.js",
-        "start-dev": "node --unhandled-rejections=strict -r dotenv/config dist/backend/index.js",
+        "start-dev": "set DEBUG=express:* & node --unhandled-rejections=strict -r dotenv/config dist/backend/index.js",
         "build": "npm run build-end && npm run build-front",
         "build-dev": "gulp build-dev && rimraf dist/backend && tsc -p tsconfig.dev.json",
         "build-front": "gulp build",
@@ -33,18 +33,18 @@
     "gulp": {
         "src": {
             "root": "./src/frontend",
-            "css": "./src/frontend/scss",
-            "js": "./src/frontend/js",
-            "img": "./src/frontend/img",
-            "font": "./src/frontend/font",
+            "css": "./src/frontend/public/scss",
+            "js": "./src/frontend/public/js",
+            "img": "./src/frontend/public/img",
+            "font": "./src/frontend/public/font",
             "html": "./src/frontend"
         },
         "build": {
             "root": "./dist/frontend",
-            "css": "./dist/frontend/css",
-            "js": "./dist/frontend/js",
-            "img": "./dist/frontend/img",
-            "font": "./dist/frontend/font",
+            "css": "./dist/frontend/public/css",
+            "js": "./dist/frontend/public/js",
+            "img": "./dist/frontend/public/img",
+            "font": "./dist/frontend/public/font",
             "html": "./dist/frontend"
         },
         "js": {
@@ -134,6 +134,7 @@
     "devDependencies": {
         "@raz1el/uncss": "^0.17.6",
         "@types/express": "^4.17.9",
+        "@types/express-session": "^1.17.4",
         "@types/node": "^15.3.0",
         "@types/ws": "^7.4.4",
         "@typescript-eslint/eslint-plugin": "^4.24.0",
@@ -175,6 +176,7 @@
         "@raz1el/util": "^1.0.6",
         "@shopify/draggable": "^1.0.0-beta.12",
         "express": "^4.17.1",
+        "express-session": "^1.17.2",
         "js-cookie": "^2.2.1",
         "ws": "^7.4.5"
     }
