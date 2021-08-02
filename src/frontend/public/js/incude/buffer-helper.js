@@ -1,23 +1,11 @@
-import { TextEncoder, TextDecoder } from "util";
+const PackType = {
+    Event: 0,
+    Mpegts: 1
+};
 
-export enum PackType {
-    Event,
-    Mpegts
-}
-
-export enum EventType {
-    Close
-}
-
-export interface Options {
-    packType: PackType;
-    type?: EventType;
-    data: number;
-    team?: number;
-    nickname?: string;
-    concatBuffer?: Buffer | Uint8Array;
-}
-
+const EventType = {
+    Close: 0
+};
 /**
  * Create Buffer 'package' with size 4 bytes + buffer bytes. 
  * 0 index = PackType byte, 
@@ -28,7 +16,7 @@ export interface Options {
  * 5 index = nickname start byte
  * other remaining bytes options.concatBuffer bytes
  */
-export function packBuffer(options: Options) {
+function packBuffer(options) {
     const buff = Buffer.alloc(5);
     buff.writeInt8(options.packType);
     buff.writeInt8(options.data, 2);
@@ -56,14 +44,14 @@ export function packBuffer(options: Options) {
     return buff;
 }
 
-export function packConcat(packBf: Buffer, buffer: Buffer) {
+function packConcat(packBf, buffer) {
     return Buffer.concat([packBf, buffer]);
 }
 
 /**
  * Unpack buffer to Options Object. {packType: number, type: number, data: number, concatBuffer: Buffer}
  */
-export function unpackBuffer(buffer: Buffer): Options {
+function unpackBuffer(buffer) {
     const unit8 = new Uint8Array(buffer);
     const nickLength = Buffer.from(unit8).readInt8(4);
     return {
@@ -75,3 +63,5 @@ export function unpackBuffer(buffer: Buffer): Options {
         concatBuffer: unit8.slice(5 + nickLength),
     };
 }
+
+module.exports = { unpackBuffer, packBuffer, packConcat, PackType, EventType };

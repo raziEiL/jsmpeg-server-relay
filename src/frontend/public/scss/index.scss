@@ -11,17 +11,21 @@ body {
 
 main {
     margin: 0 auto;
-    padding: 12px;
     max-width: 1920px;
+    //height: 100%;
     padding: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .container {
+    margin-top: 58px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    width: 100%;
+    justify-content: flex-end;
+    align-content: flex-start;
+    // align-content: center;
+    width: 952px;
     height: 100%;
 }
 

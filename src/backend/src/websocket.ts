@@ -66,9 +66,12 @@ export class JsMpegSocket extends WebSocket.Server {
             return;
         }
 
+        const xTeam = req.get("x-team");
+        const team = xTeam ? Number.parseInt(xTeam) : 0;
+
         this.clientAddress.add(address);
         const index = [...this.clientAddress].indexOf(address);
-        const packBf = bf.packBuffer({ packType: bf.PackType.Mpegts, data: index });
+        const packBf = bf.packBuffer({ packType: bf.PackType.Mpegts, data: index, team, nickname: req.get("x-nickname") });
 
         log(`Broadcaster connected: id=${index}, address=${address} [${this.clientAddress.size}/${BROADCASTERS_LIMIT}]`);
 

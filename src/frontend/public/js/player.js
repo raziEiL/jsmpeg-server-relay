@@ -1,10 +1,13 @@
 const JSMpeg = require("./incude/jsmpeg-player.umd.min");
 const vcMenu = require("./incude/menu");
-const bf = require("../../../../dist/backend/src/buffer-helpers");
+const bf = require("./incude/buffer-helper");
 const jsMpegs = new Map();
 
 const isLocalehost = () => document.location.hostname.includes("localhost") && document.location.hostname.length === 9;
-const container = document.querySelector(".container");
+const teamA = document.querySelector(".team-a");
+const teamB = document.querySelector(".team-b");
+const getContainerByTeam = (obj) => obj.team ? teamB : teamA;
+const getBorderClassByTeam = (obj) => obj.team ? "border-b" : "border-a";
 createSocket();
 
 function createSocket() {
@@ -51,16 +54,18 @@ function createSocket() {
                 if (!jsMpegs.has(obj.data)) {
                     const div = document.createElement("div");
                     div.dataset.index = obj.data;
-                    div.classList.add("cam", "border-a");
+                    div.classList.add("cam", getBorderClassByTeam(obj));
                     vcMenu(div);
 
                     const span = document.createElement("span");
                     span.classList.add("nickname");
                     span.setAttribute("role", "textbox");
                     span.setAttribute("contenteditable", "true");
+                    if (obj.nickname)
+                        span.textContent = obj.nickname;
 
                     div.append(span);
-                    container.append(div);
+                    getContainerByTeam(obj).append(div);
 
                     const jsMpeg = new JSMpeg.VideoElement(div, (isLocalehost() ? "ws://" : "wss://") + document.location.hostname, {
                         control: false,

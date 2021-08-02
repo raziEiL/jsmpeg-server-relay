@@ -27,7 +27,7 @@ setTimeout(() => {
 const vcMenu = require("./incude/menu");
 const { getRandomArbitrary } = require("@raz1el/util");
 
-const container = document.querySelector(".container");
+const container = document.querySelector(".team-a");
 const a = document.querySelector(".button-a");
 const b = document.querySelector(".button-b");
 let count = 0;
@@ -43,8 +43,8 @@ if (b)
     });
 
 function create(className) {
-    if (count >= 10) {
-        window.alert("Достигнут лимит камер 10/10");
+    if (count >= 12) {
+        window.alert("Достигнут лимит камер 12/12");
         return;
     }
     count++;
