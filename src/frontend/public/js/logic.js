@@ -27,7 +27,8 @@ setTimeout(() => {
 const vcMenu = require("./incude/menu");
 const { getRandomArbitrary } = require("@raz1el/util");
 
-const container = document.querySelector(".team-a");
+const teams = [document.querySelector(".team-a"), document.querySelector(".team-b")];
+const borders = ["border-a", "border-b"];
 const a = document.querySelector(".button-a");
 const b = document.querySelector(".button-b");
 let count = 0;
@@ -48,9 +49,9 @@ function create(className) {
         return;
     }
     count++;
-
+    const index = count % 2;
     const div = document.createElement("div");
-    div.classList.add("cam", className, "border-a", "debug");
+    div.classList.add("cam", className, borders[index], "debug");
     div.innerHTML = "Удерживайте левую кнопку мыши, чтобы переместить окно<br><br>Нажмите правую кнопку мыши, чтобы открыть меню команд";
     div.style.backgroundColor = `rgb(${getRandomArbitrary(0, 255)},${getRandomArbitrary(0, 255)},${getRandomArbitrary(0, 255)})`;
     vcMenu(div);
@@ -68,7 +69,7 @@ function create(className) {
 
     div.append(span);
     div.append(btn);
-    container.append(div);
+    teams[index].append(div);
 }
 
 function addCloseListener(element) {
